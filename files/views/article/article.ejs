@@ -1,0 +1,123 @@
+<style>
+    a{
+        text-decoration: none;
+        color: white;
+      }
+      input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      button,button[type=submit] {
+        width: 30%;
+        background-color: rgb(233, 193, 193);
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      h1{
+          color:  rgba(0, 0, 0, 0.421);
+          text-align: center;
+      }
+      div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+      }
+
+      ul {
+        background: #ff9999;
+        padding: 20px;
+      }
+      ul li {
+        background: #ffe5e5;
+        color: darkred;
+        padding: 5px;
+        margin-left: 35px;
+        list-style: none;
+      }
+    </style>
+    <body>
+        <div>
+            <h1>-Create new article-</h1>
+            
+            <form  method="POST">
+                <select name="category" >
+                    <% for (let index in categ){%>
+                       <% if(keyUp!=null){%>
+                       
+   
+                      <option value='<%=categ[index]._id%>'
+                        <% if(categ[index].category==keyUp.category.category){%> selected <%}%>
+                         >
+                        <%=categ[index].category%>
+                    </option>
+                    <% } else {%>
+                        <option value='<%=categ[index]._id%>' >
+                            <%=categ[index].category%>
+                        </option>
+                      <% } %>
+                    <%}%>   
+                </select> 
+               
+               
+                <!-- <select name="category">
+                    <% categ.map((r)=>{%>
+                            <%if(keyUp!==null){%>
+                             
+                              <option value="<%=r._id%>" <% if(r.category== keyUp.category.category){%> selected <%}%> >
+                                     <%=r.category%> 
+                                </option>  
+                             
+                            
+                          
+                              <%} else {%>
+                                <option value="<%=r._id%>"><%=r.category%></option>
+                                <%}%>
+                              
+                            
+                          
+                       
+
+                           <%})%>
+                  </select> -->
+               
+                
+                
+                <input type="text" name="title" placeholder="Title" <% if(keyUp!=null){%>value="<%=keyUp.title %>"<% }%>>
+                <input type="text" name="message" placeholder="Message" <% if(keyUp!=null){%>value="<%=keyUp.message %>"<% }%>>
+                <button type="submit" name="submit">Submit</button>
+            </form>
+            <form>
+              <input type="text" placeholder="Search.."  name="searchs">
+              <input type="submit" name="search" value="search">
+
+            </form>
+           
+            <ul>
+              <% for(let i=0; i <art.length; i++) { %>
+               
+                <li>----  <%=d%>/<%=m%>/<%=y%> --</li>
+                 <li><%=art[i].category.category%></li>
+                 <li><%=art[i].category.location%></li>
+                <li><%=art[i].title%></li>
+                <li><%=art[i].message%></li>
+                <button><a href="/article/<%=art[i]._id%>">Edit</a></button>
+                <button ><a href="/del<%=art[i]._id%>">Delete</a></button>
+                <button ><a href="/article/detail/<%=art[i]._id%>">Detail</a></button>
+             
+               
+            
+                <%}%>
+          </ul>
+        
+            
+        </div>
+    </body>

@@ -1,0 +1,80 @@
+<style>
+    a{
+         text-decoration: none;
+         color: white;
+       }
+       input[type=text], select,[type=search] {
+         width: 100%;
+         padding: 12px 20px;
+         margin: 8px 0;
+         display: inline-block;
+         border: 1px solid #ccc;
+         border-radius: 4px;
+         box-sizing: border-box;
+       }
+       button,button[type=submit] {
+         width: 30%;
+         background-color: rgb(233, 193, 193);
+         color: white;
+         padding: 14px 20px;
+         margin: 8px 0;
+         border: none;
+         border-radius: 4px;
+         cursor: pointer;
+       }
+       h1{
+           color:  rgba(0, 0, 0, 0.421);
+           text-align: center;
+       }
+       div {
+         border-radius: 5px;
+         background-color: #f2f2f2;
+         padding: 20px;
+       }
+       ul {
+         background: #ff9999;
+         padding: 20px;
+       }
+       ul li {
+         background: #ffe5e5;
+         color: darkred;
+         padding: 5px;
+         margin-left: 35px;
+         list-style: none;
+       }
+ </style>
+ <body>
+     <h1>Detail Article</h1>
+    
+           <ul>
+             <li>--<%=art.category.category%>   --  <%=d%>/<%=m%>/<%=y%> --</li>
+             <li><%=art.title%></li>
+             <li><%=art.message%></li>
+             <td><button><a href="/article/<%=art._id%>">Edit</a></button></td>
+             <td><button ><a href="/sup/<%=art._id%>">Delete</a></button></td>
+         </ul>
+          
+    
+         <div >
+           <form  method="POST">
+               <h2>Comment :</h2>
+               <label>Title :</label>
+               <input type="text" name="title" >
+               <label>Message :</label>
+               <textarea name="message" cols="30" rows="10"></textarea>
+               <button type="submit">Add Comment</button>
+           </form>
+       </div>
+       <div >
+             <h1>Comment <%=art.note.length%> </h1>
+             <% for (let index in art.note ){%>
+               <article>
+                 <h2><%=art.note[index].title %></h2>
+                 <h3><%=art.note[index].postedAt %></h3>
+                 <p><%=art.note[index].message%></p>
+                 
+               </article>
+               <p><%=art.category.category%></p>
+             <%}%>
+     </div>
+   </body>
